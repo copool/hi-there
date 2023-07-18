@@ -89,11 +89,12 @@ public class ResultBackground {
 			writer.newLine();
 			writer.flush();
 			fw.close();
-			writer.close();
 			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			writer.close();
 		}
 		
 	}
