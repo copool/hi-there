@@ -3,7 +3,7 @@ public class HelloWorld_ywkang {
     System.out.println("Hello world! testest");
 
     int a = 12;
-    int b = 88;
+    int b = 87;
     int result =0;
     result = a + b;
 
