@@ -14,12 +14,12 @@ import GameEnvironment.Music;
 
 public class ResultBackground {
 
-	// Á¦¸ñ, Á¡¼ö, ·©Å©
+	// ì œëª©, ì ìˆ˜, ë­í¬
 	private String musicTitle;
 	private int score;
 	private String rank;
 	
-	// ´Ü°èº° ÄÁÆ®·Ñ º¯¼ö
+	// ë‹¨ê³„ë³„ ì»¨íŠ¸ë¡¤ ë³€ìˆ˜
 	private boolean step1On;
 	private boolean step2On;
 	private boolean step3On;
@@ -35,7 +35,7 @@ public class ResultBackground {
 	
 	public ResultBackground() {
 		
-		// ´Ü°èº° ÄÁÆ®·Ñ 
+		// ë‹¨ê³„ë³„ ì»¨íŠ¸ë¡¤ 
 		step1On = false;
 		step2On = false;
 		step3On = false;
@@ -48,7 +48,7 @@ public class ResultBackground {
 		
 	}
 	
-	// ¼öÁ¤¿ä¸Á
+	// ìˆ˜ì •ìš”ë§
 	public void calRank() {
 		if(score <= 6000) rank = "C"; 
 		else if(score <= 10000) rank = "B"; 
@@ -58,15 +58,15 @@ public class ResultBackground {
 	
 	public void writeScore() {
 			
-		// writeÇÑ ½Ã°£
+		// writeí•œ ì‹œê°„
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
 		String dateStr = sdf.format(cal.getTime());
 		
-		// score ¹®ÀÚ
+		// score ë¬¸ì
 		String scoreStr = String.valueOf(score);
 		
-		// °î ÀÌ¸§ ¹®ÀÚ
+		// ê³¡ ì´ë¦„ ë¬¸ì
 		String titleStr = musicTitle;
 		
 		// FileWriter
@@ -93,6 +93,8 @@ public class ResultBackground {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			writer.close();
 		}
 		
 	}
@@ -102,7 +104,7 @@ public class ResultBackground {
 		// 'next game Enter' info control
 		angle += 3;
 		
-		// ´ÙÀ½ °ÔÀÓÀ¸·Î ÀÌµ¿ °¡´É
+		// ë‹¤ìŒ ê²Œì„ìœ¼ë¡œ ì´ë™ ê°€ëŠ¥
 		if(bgm.getTime() >= 6500) {
 			nextgame = true;
 		}
@@ -111,7 +113,7 @@ public class ResultBackground {
 	
 	public void draw(Graphics2D g) {
 		
-		// result ¹è°æ
+		// result ë°°ê²½
 		g.setColor(new Color(0, 0, 0, 150));
 		g.fillRect(
 				400, 
@@ -124,8 +126,8 @@ public class ResultBackground {
 				RenderingHints.KEY_TEXT_ANTIALIASING,
 				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		
-		// ´Ü°èº°·Î È­¸éÃâ·Â
-		// 1´Ü°è - °îÀÌ¸§
+		// ë‹¨ê³„ë³„ë¡œ í™”ë©´ì¶œë ¥
+		// 1ë‹¨ê³„ - ê³¡ì´ë¦„
 		if(bgm.getTime() >= 3000 || step1On == true) {
 			step1On = true;
 			g.setColor(new Color(200, 255, 200));
@@ -137,7 +139,7 @@ public class ResultBackground {
 			g.drawString(musicTitle, 440, 300);
 		}
 		
-		// 2´Ü°è - Á¡¼ö
+		// 2ë‹¨ê³„ - ì ìˆ˜
 		if(bgm.getTime() >= 4000 || step2On == true) {
 			step2On = true;
 			g.setColor(new Color(200, 255, 200));
@@ -153,7 +155,7 @@ public class ResultBackground {
 					);
 		}
 		
-		// 3´Ü°è - ·©Å©
+		// 3ë‹¨ê³„ - ë­í¬
 		if(bgm.getTime() >= 5500 || step3On == true) {
 			step3On = true;
 			g.setColor(Color.green);
@@ -165,7 +167,7 @@ public class ResultBackground {
 			g.drawString(rank, 760, 390);
 		}
 		
-		// 4´Ü°è - ´ÙÀ½ °ÔÀÓ
+		// 4ë‹¨ê³„ - ë‹¤ìŒ ê²Œì„
 		if(bgm.getTime() >= 6500 || step4On == true) {
 			step4On = true;
 			double alpha = 255 * Math.sin(angle * Math.PI / 180);	
